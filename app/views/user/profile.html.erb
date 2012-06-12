@@ -1,0 +1,50 @@
+<% if @user.nil? %>
+	<h2> Invalid user ID </h2>
+<% else %>		
+	<h1> <%= @user.full_name %> </h1>
+	
+	<div class="row">
+    	<div class="span4">
+    		<img src = "/<%= @user.photo_path %>"  style = "padding-left:20px">
+	    </div>
+	    <div class="span8">
+    		<table class = "table table-bordered">
+			    <tbody>
+				<td><b>Gender</b></td>
+			    <td><%= @user.sex %></td>
+			    </tr>
+			    <td><b>Ethnicity</b></td>
+			    <td><%= @user.race %></td>
+			    </tr>
+			    <td><b>Degrees Held</b></td>
+			    <td><%= @user.degree %></td>
+			    </tr>
+			    <td><b>Occupation</b></td>
+			    <td><%= @user.occupation %></td>
+			    </tr>
+			    <td><b>Birthyear</b></td>
+			    <td><%= @user.birth_year %></td>
+			    </tr>
+			    <td><b>Languages</b></td>
+			    <td><%= @user.languages %></td>
+			    </tr>
+			    <td><b>Mother's birthplace</b></td>
+			    <td><%= @user.mother_birth_place %></td>
+			    </tr>
+			    <td><b>Father's birthplace'</b></td>
+			    <td><%= @user.father_birth_place %></td>
+			    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+    </div>	
+	
+	<h2>Before Internment</h2>
+	<p><%= @user.before_internment %></p>
+	
+	<h2>During Internment</h2>
+	<p><%= @user.during_internment %></p>
+	
+	<h2>After Internment</h2>
+	<p><%= @user.after_internment %></p>
+<% end %>

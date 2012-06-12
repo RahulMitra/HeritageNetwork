@@ -1,0 +1,32 @@
+<% if !@question.nil? %>
+<div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
+<h1 style = "font-size: 40px" ><%= @question.question %> </h1>
+<br> 
+<p> Posted By: <%= @question.poster %> </p>
+</div>
+
+<% @question.comments.each do |comment| %>
+	<div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
+	<p> <%= comment.comment %> </p>
+	<p> <b> Response By: <%= User.find_by_id(comment.user_id).full_name %> </b> </p>
+	</div>
+<% end %>
+
+<% if !session[:id].nil? %>
+	<div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
+		<%= form_for :comment, :url => {:controller => "question", :action => "post_comment", :id => @question.id} do |form| %>
+			<%= form.label("Hi, #{session[:firstName]}! Post Response:") %>
+			<%= form.text_area(:comment) %>
+			<br />
+			<%= form.submit "Post Response", :class => "btn" %>
+		<% end %>
+	</div>
+<% end %>
+
+<script>
+	var d = document.getElementById("questions") 
+	d.className = d.className + " active";
+</script>
+
+<% end %>
+

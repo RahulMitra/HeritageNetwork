@@ -1,0 +1,7 @@
+<%= form_for(:user, :url => {:controller => :user, :action => :post_login}) do |form| %>
+	<%= form.label("Username") %>
+	<%= form.text_field(:login) %>
+	<%= form.label("Password") %>
+	<%= form.password_field(:password) %>
+	<%= form.submit "Log in", :class => "btn" %>
+<% end %>

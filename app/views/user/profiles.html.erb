@@ -1,0 +1,14 @@
+<h2> Users </h2>
+
+<ul class = "thumbnails">
+<% @users.each do |user| %>
+		<li class = "span3">
+				<a href="/user/profile/<%=user.id%>" class="thumbnail">
+					<img src = "/<%= user.photo_path %>" a href = "">
+				</a>
+			<h5><%= link_to user.full_name, :controller => "user", :action => "profile", :id => user.id %></h5>
+		</li>
+<% end %>
+</ul>
+
+<script> document.getElementById("profiles").className="active" </script>

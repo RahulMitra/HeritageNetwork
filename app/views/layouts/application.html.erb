@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <title><%= @title %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <style type="text/css">
+    body
+	{
+      padding-top: 60px;
+      padding-bottom: 40px;
+  	}
+    .sidebar-nav
+	{
+      padding: 9px 0;
+	}
+  </style>
+</head>
+
+<body>
+	<% if flash[:message] == "Invalid Username" or flash[:message] == "Incorrect Password" %>
+		<div class="alert alert-error">
+	    	<%= flash[:message] %>
+	    </div>    
+	<% end %>
+	
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+        <a class="brand" href="/home/index">The Manzanar Heritage Network</a>	
+	
+		<div class="nav-collapse">
+          <ul class="nav">
+            <li id = "home"> <%= link_to "Home", :controller => "home", :action => "index" %> </li>
+            <li id = "profiles"> <%= link_to "Profiles", :controller => "user", :action => "profiles" %></li>
+		    <li class="dropdown" id="questions">
+		    	<a class="dropdown-toggle" data-toggle="dropdown" href="#questions">
+			    	Questions<b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
+			    	<li> <%= link_to "View All Questions", :controller => "question", :action => "view_all" %></li>
+			    	<li><%= link_to "Ask A Question", :controller => "question", :action => "ask" %></li>
+		    	</ul>
+			</li>
+            <li id = "traditions"><a href="#contact">Traditions</a></li>
+            <li id = "events"><a href="#contact">Events</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+
+		<% if session[:username].nil? %>
+			<ul class="nav pull-right">
+		        <p class="navbar-text">
+		    	<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Sign in <b class="caret"></b></a>
+			        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+						<%= render :partial => 'user/login' %>
+					</div>
+				<li id = "create">
+					<%= link_to "Create Account", :controller => "user", :action => "register" %>
+				</li>
+			</ul>
+		<% else %>
+			<div class="btn-group pull-right">
+	          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	            <i class="icon-user"></i> <%= session[:firstName]%>
+	            <span class="caret"></span>
+	          </a>
+	          <ul class="dropdown-menu">
+	            <li><%= link_to "Profile", :controller => "user", :action => "profile", :id => session[:id] %></li>
+				<li><%= link_to "Edit Profile", :controller => "user", :action => "edit_profile", :id => session[:id] %></li>
+	            <li class="divider"></li>
+	            <li> <%= link_to "Sign Out", :controller => "user", :action => "logout" %> </li>
+	          </ul>
+	        </div>
+		<% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li class="nav-header">Recently Posted Questions:</li>
+			<% @size = Question.all.size %>
+			<% for i in 0..3 %>
+				<% if !Question.find_by_id(@size-i).nil? %>
+					<% @question = Question.find_by_id(@size-i) %>
+					<li><%= link_to @question.question, :controller => "question", :action => "view", :id => @question.id %></li>
+					<% end %>
+			<% end %>
+            <li class="nav-header">Featured Users</li>
+				<% @size = User.all.size %>
+				<% for i in 0..3 %>
+					<% if !User.find_by_id(@size-i).nil? %>
+						<% @user = User.find_by_id(@size-i) %>
+						<li><%= link_to @user.full_name, :controller => "user", :action => "profile", :id => @user.id %></li>
+						<% end %>
+				<% end %>
+            <li class="nav-header">Featured Traditions</li>
+            <li><a href="#">Tradition</a></li>
+            <li><a href="#">Tradition</a></li>
+            <li><a href="#">Tradition</a></li>
+            <li><a href="#">Tradition</a></li>
+			
+			<li class="nav-header">Featured Events</li>
+            <li><a href="#">Event</a></li>
+            <li><a href="#">Event</a></li>
+            <li><a href="#">Event</a></li>
+            <li><a href="#">Event</a></li>
+			
+          </ul>
+        </div><!--/.well -->
+      </div><!--/span-->
+		<div class="span9">
+			<%= yield %>
+		</div><!--/span-->
+	</div><!--/row-->
+<hr>
+
+    <footer>
+      <p style = "text-align: center;"> &copy; Heritage Lovers Incorporated, 2012</p>
+    </footer>
+
+  </div><!--/.fluid-container-->
+</body>
+</html>

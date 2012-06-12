@@ -1,0 +1,16 @@
+<div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
+<h2> Ask a question! </h2>
+<p> Do you have a question to ask? Anyone can ask! **Text about proper asking etiquette or whatever** </p>
+<%= form_for :input, :url => {:controller => "question", :action => "post_ask"} do |form| %>
+	<%= form.label("Name") %>
+	<%= form.text_field(:name) %>
+	<%= form.label("Question") %>
+	<%= form.text_area(:question) %>
+	<br />
+	<%= form.submit "Ask Question!", :class => "btn" %>
+<% end %>
+
+<script>
+	var d = document.getElementById("questions") 
+	d.className = d.className + " active";
+</script>

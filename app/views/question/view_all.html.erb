@@ -1,0 +1,18 @@
+<table class="table table-striped">
+	<th>Question</th>
+	<th>Poster</th>
+	<th>Answers</th>
+	<% @questions.each do |question| %>
+		<tr>
+			<td> <%= link_to question.question, :controller => "question", :action => "view", :id => question.id %></td>
+			<td> <%= question.poster %> </td>
+			<td> <%= question.comments.size %> </td>
+		</tr>
+	<% end %>
+
+</table>
+
+<script>
+	var d = document.getElementById("questions") 
+	d.className = d.className + " active";
+</script>

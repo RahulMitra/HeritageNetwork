@@ -1,0 +1,41 @@
+<%= form_for :edits, :url => {:controller => "user", :action => "post_edit"} do |form| %>
+<%= form.label("First Name") %>
+<%= form.text_field(:first_name, :value => @user.first_name) %>
+<%= form.label("Last Name") %>
+<%= form.text_field(:last_name, :value => @user.last_name) %>
+<%= form.label("Gender") %>
+<%= form.text_field(:sex, :value => @user.sex) %>
+<%= form.label("Marital Status") %>
+<%= form.text_field(:marital_status, :value => @user.marital_status) %>
+<%= form.label("Ethnicity") %>
+<%= form.text_field(:race, :value => @user.race) %>
+<%= form.label("Degrees") %>
+<%= form.text_field(:degree, :value => @user.degree) %>
+<%= form.label("Occupation") %>
+<%= form.text_field(:occupation, :value => @user.occupation) %>
+<%= form.label("Birth Year") %>
+<%= form.text_field(:birth_year, :value => @user.birth_year) %>
+<%= form.label("Languages") %>
+<%= form.text_field(:languages, :value => @user.languages) %>
+<%= form.label("Mother's Birth Place") %>
+<%= form.text_field(:mother_birth_place, :value => @user.mother_birth_place) %>
+<%= form.label("Father's Birth Place") %>
+<%= form.text_field(:father_birth_place, :value => @user.father_birth_place) %>
+<%= form.label("Before Internment") %>
+<%= form.text_area(:before_internment,:value => @user.before_internment, :class => "input-xlarge") %>
+<%= form.label("During Internment") %>
+<%= form.text_area(:during_internment, :value => @user.during_internment, :class => "input-xlarge") %>
+<%= form.label("After Internment") %>
+<%= form.text_area(:after_internment, :value => @user.after_internment, :class => "input-xlarge") %>
+<br/>
+<%= form.submit "Save Edits", :class => "btn" %>
+<% end %>
+
+<br>
+<br>
+<br>
+<br>
+
+<%= form_for :edits, :url => {:controller => "user", :action => "post_delete"} do |form| %>
+	<%= form.submit "DELETE ACCOUNT", :class => "btn btn-large btn-danger" %>
+<% end %>

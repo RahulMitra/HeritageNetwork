@@ -1,0 +1,30 @@
+<% if flash[:notice] %>
+	<div class="alert alert-error">	
+		The following errors occurred:
+		<ul>
+			<% flash[:notice].each do |message| %>
+				<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
+<h2> Create an Account! </h2>
+<p> Do you have some connection to the Manzanar site? **More text here about who can sign up**</p>
+<%= form_for :register, :url => {:controller => "user", :action => "post_register"} do |form| %>
+	<%= form.label("First Name") %>
+	<%= form.text_field(:firstName) %>
+	<%= form.label("Last Name") %>
+	<%= form.text_field(:lastName) %>
+	<%= form.label("Username") %>
+	<%= form.text_field(:username) %>
+	<%= form.label("Password") %>
+	<%= form.password_field(:password) %>
+	<%= form.label("Re-enter Password") %>
+	<%= form.password_field(:password_confirmation) %>
+	<br />
+	<%= form.submit "Create Account!", :class => "btn" %>
+<% end %>
+
+<script> document.getElementById("create").className="active" </script>
