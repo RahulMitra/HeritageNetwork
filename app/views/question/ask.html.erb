@@ -1,6 +1,6 @@
 <div class="hero-unit" style = "padding-top: 15px; padding-bottom:15px;">
 <h2> Ask a question! </h2>
-<p> Do you have a question to ask? Anyone can ask! **Text about proper asking etiquette or whatever** </p>
+<p> Do you have a question to ask? Anyone can ask! Your question will be posted to the website, and those who have accounts can answer it. </p>
 <%= form_for :input, :url => {:controller => "question", :action => "post_ask"} do |form| %>
 	<%= form.label("Name") %>
 	<%= form.text_field(:name) %>

@@ -50,8 +50,9 @@
 			    	<li><%= link_to "Ask A Question", :controller => "question", :action => "ask" %></li>
 		    	</ul>
 			</li>
-            <li id = "traditions"><a href="#contact">Traditions</a></li>
-            <li id = "events"><a href="#contact">Events</a></li>
+            <li id = "traditions"><%= link_to "Traditions", :controller => "home", :action => "traditions_food" %></li>
+            <li id = "events"><%= link_to "Events", :controller => "home", :action => "events" %></li>
+            <li id = "sources"><%= link_to "Sources", :controller => "home", :action => "sources" %></li>
           </ul>
         </div><!--/.nav-collapse -->
 
@@ -108,17 +109,13 @@
 						<% end %>
 				<% end %>
             <li class="nav-header">Featured Traditions</li>
-            <li><a href="#">Tradition</a></li>
-            <li><a href="#">Tradition</a></li>
-            <li><a href="#">Tradition</a></li>
-            <li><a href="#">Tradition</a></li>
+            <li><%= link_to "Food", :controller => "home", :action => "traditions_food" %></li>
+            <li><%= link_to "Geta Sandals", :controller => "home", :action => "traditions_sandals" %></li>
 			
 			<li class="nav-header">Featured Events</li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">Event</a></li>
-            <li><a href="#">Event</a></li>
-			
+            <li><%= link_to "Cookout and Picnic", :controller => "home", :action => "events" %></li>
+            <li><%= link_to "Annual Pilgrimage to Manzanar", :controller => "home", :action => "events" %></li>
+
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
